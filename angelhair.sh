@@ -56,8 +56,18 @@ if [ $direnum == "yes" ]
 then
 #directory scanning
 dirb http://$ip/
-gobuster -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -u http://$ip/
+gobuster dir -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -u $ip
 curl http://$ip/robots.txt
+fi
+
+echo +--------------------------------------------+
+echo + Would you like to run a SMB Enum: [yes/no] +
+echo +--------------------------------------------+
+read smbenum
+if [ $smbenum == "yes" ]
+then
+#directory scanning
+enum4linux $ip
 fi
 
 echo "Enjoy your exploits :P <3 n0ps"
